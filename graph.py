@@ -20,22 +20,22 @@ class Graph:
         j = 0
         for a in self.nodes:
             for b in a:
-                if j < y - 1:
+                if j < x - 1:
                     b.AddNeighbor(self.nodes[i][j+1])
-                if j < y - 1 and i < x - 1:
-                    b.AddNeighbor(self.nodes[i+1][j+1])
-                if i < x - 1:
+                #if j < x - 1 and i < y - 1:
+                #    b.AddNeighbor(self.nodes[i+1][j+1])
+                if i < y - 1:
                     b.AddNeighbor(self.nodes[i+1][j])
-                if i < x - 1 and j > 0:
-                    b.AddNeighbor(self.nodes[i+1][j-1])
+                #if i < y - 1 and j > 0:
+                #    b.AddNeighbor(self.nodes[i+1][j-1])
                 if j > 0:
                     b.AddNeighbor(self.nodes[i][j-1])
-                if i > 0 and j > 0:
-                    b.AddNeighbor(self.nodes[i-1][j-1])
+                #if i > 0 and j > 0:
+                #    b.AddNeighbor(self.nodes[i-1][j-1])
                 if i > 0:
                     b.AddNeighbor(self.nodes[i-1][j])
-                if i > 0 and j < y - 1:
-                    b.AddNeighbor(self.nodes[i-1][j+1])
+                #if i > 0 and j < x - 1:
+                #    b.AddNeighbor(self.nodes[i-1][j+1])
                 j += 1
             i += 1
             j = 0
