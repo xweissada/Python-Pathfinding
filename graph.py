@@ -13,6 +13,7 @@ class Graph:
                 self.nodes.append(Node(j, i))
 
         self.start = self.nodes[0]
+        self.end = self.nodes[-1]
         a = 0
         for node in self.nodes:
             if a % x > 0:
