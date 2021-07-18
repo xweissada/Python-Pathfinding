@@ -34,22 +34,9 @@ drawCanvas ()
 canvas . tag_bind ( "recClick", "<Button-1>", onClick )
 canvas . place ( relx = 0.5, rely = 0.5, anchor = CENTER )
 
-btn = Button ( window, text = "GO", width = 10, command = buttonClick )
-btn . place ( x = 250, y = 510 )
+btn1 = Button ( window, text = "GO", width = 10, command = buttonClick )
+btn1 . place ( x = 150, y = 510 )
+btn2 = Button ( window, text = "Reset", width = 10, command = drawCanvas )
+btn2 . place ( x = 300, y = 510 )
 
 window . mainloop()
-
-'''
-print()
-while ( True ):
-    answ = int ( input ( "Enter 1 for BFS or 2 for DFS: " ) )
-    if answ == 1:
-        print( "BFS:" )
-        BFS ( graph, graph . start )
-    elif answ == 2:
-        print( "DFS:" )
-        DFS ( graph, graph . start )
-    else:
-        break
-    print()
-'''

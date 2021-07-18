@@ -14,7 +14,7 @@ def BFS ( graph, start, canvas, window ):
         vertice = queue . pop(0)
         print ( str ( vertice . depth ) + " " + str ( vertice ) )
         for neighbor in vertice . neighbors:
-            if neighbor . state == 0:
+            if neighbor . state == 0 and not neighbor . wall:
                 neighbor . ChangeState ( 1 )
                 canvas . create_rectangle ( neighbor . x * 20, neighbor . y * 20, ( neighbor . x + 1 ) * 20, ( neighbor . y + 1 ) * 20, fill = "yellow", width = 1 )
                 window . update()
