@@ -17,3 +17,18 @@ def BFS ( graph, start ):
                 neighbor . depth = vertice . depth + 1
                 queue . append ( neighbor )
         vertice . ChangeState ( 2 )
+
+def DFSRec ( node ):
+    if node . state == 1 or node . state == 2:
+        return
+    print ( node )
+    node . state = 1
+    for neighbor in node . neighbors:
+        DFSRec ( neighbor )
+    node . state = 2 
+
+def DFS ( graph, start ):
+    for node in graph . nodes:
+        node . ChangeState ( 0 )
+        node . depth = 0
+    DFSRec ( start )

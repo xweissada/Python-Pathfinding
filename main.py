@@ -1,6 +1,6 @@
 from node import Node
 from graph import Graph
-from algorithms import BFS
+from algorithms import *
 
 n00 = Node ( 0, 0 )
 n01 = Node ( 0, 1 )
@@ -50,3 +50,7 @@ graph . AddNode ( n20 )
 graph . AddNode ( n21 )
 graph . AddNode ( n22 )
 BFS ( graph, graph . start )
+
+print()
+
+DFS ( graph, graph . start )
