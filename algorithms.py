@@ -2,10 +2,11 @@ import time
 
 
 def BFS(graph, start, end, canvas, window):
-    for node in graph.nodes:
-        node.ChangeState(0)
-        node.depth = 0
-        node.parent = None
+    for arr in graph.nodes:
+        for node in arr:
+            node.ChangeState(0)
+            node.depth = 0
+            node.parent = None
     queue = []
     queue.append(start)
     start.ChangeState(1)
@@ -59,7 +60,8 @@ def DFSRec(node, start, end, canvas, window):
 
 
 def DFS(graph, start, end, canvas, window):
-    for node in graph.nodes:
-        node.ChangeState(0)
-        node.depth = 0
+    for arr in graph.nodes:
+        for node in arr:
+            node.ChangeState(0)
+            node.depth = 0
     DFSRec(start, start, end, canvas, window)

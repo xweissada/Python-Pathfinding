@@ -9,22 +9,36 @@ class Graph:
         self.y = y
         self.nodes = []
         for i in range(y):
+            new = []
             for j in range(x):
-                self.nodes.append(Node(j, i))
+                new.append(Node(j, i))
+            self.nodes.append(new)
 
-        self.start = self.nodes[0]
-        self.end = self.nodes[-1]
-        a = 0
-        for node in self.nodes:
-            if a % x > 0:
-                node.AddNeighbor(self.nodes[a - 1])
-            if a - x >= 0:
-                node.AddNeighbor(self.nodes[a - x])
-            if a < (x * y - 1) and a % x < x - 1:
-                node.AddNeighbor(self.nodes[a + 1])
-            if a + x <= (x * y - 1):
-                node.AddNeighbor(self.nodes[a + x])
-            a += 1
+        self.start = self.nodes[0][0]
+        self.end = self.nodes[-1][-1]
+        i = 0
+        j = 0
+        for a in self.nodes:
+            for b in a:
+                if j < y - 1:
+                    b.AddNeighbor(self.nodes[i][j+1])
+                if j < y - 1 and i < x - 1:
+                    b.AddNeighbor(self.nodes[i+1][j+1])
+                if i < x - 1:
+                    b.AddNeighbor(self.nodes[i+1][j])
+                if i < x - 1 and j > 0:
+                    b.AddNeighbor(self.nodes[i+1][j-1])
+                if j > 0:
+                    b.AddNeighbor(self.nodes[i][j-1])
+                if i > 0 and j > 0:
+                    b.AddNeighbor(self.nodes[i-1][j-1])
+                if i > 0:
+                    b.AddNeighbor(self.nodes[i-1][j])
+                if i > 0 and j < y - 1:
+                    b.AddNeighbor(self.nodes[i-1][j+1])
+                j += 1
+            i += 1
+            j = 0
 
     # Changes the starting point of the graph
     def AddStart(self, node):

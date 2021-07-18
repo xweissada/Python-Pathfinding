@@ -7,7 +7,6 @@ class Interface:
 
     def __init__(self, x=10, y=10):
         self.graph = Graph(x, y)
-        self.graph.AddStart(45)
         self.window = Tk()
         self.window.title("Python Pathfinding")
         self.window.geometry("650x650")
@@ -28,20 +27,20 @@ class Interface:
         self.drop.pack()
 
     def drawCanvas(self):
-        for node in self.graph.nodes:
-            if node == self.graph.start:
-                self.canvas.create_rectangle(node.x * 20, node.y * 20, (node.x + 1) * 20, (node.y + 1) * 20,
-                                             fill="green", width=1)
-            elif node == self.graph.end:
-                self.canvas.create_rectangle(node.x * 20, node.y * 20, (node.x + 1) * 20, (node.y + 1) * 20,
-                                             fill="red", width=1)
-            else:
-                self.canvas.create_rectangle(node.x * 20, node.y * 20, (node.x + 1) * 20, (node.y + 1) * 20,
-                                             fill=node.Color(), width=1, tags="recClick")
+        for arr in self.graph.nodes:
+            for node in arr:
+                if node == self.graph.start:
+                    self.canvas.create_rectangle(node.x * 20, node.y * 20, (node.x + 1) * 20, (node.y + 1) * 20,
+                                                fill="green", width=1)
+                elif node == self.graph.end:
+                    self.canvas.create_rectangle(node.x * 20, node.y * 20, (node.x + 1) * 20, (node.y + 1) * 20,
+                                                fill="red", width=1)
+                else:
+                    self.canvas.create_rectangle(node.x * 20, node.y * 20, (node.x + 1) * 20, (node.y + 1) * 20,
+                                                fill=node.Color(), width=1, tags="recClick")
 
     def onClick(self, pos):
-        node = int(pos.x / 20) + self.graph.y * (int(pos.y / 20))
-        self.graph.nodes[node].ChangeWall()
+        self.graph.nodes[int(pos.y / 20)][int(pos.x / 20)].ChangeWall()
         self.canvas.delete(ALL)
         self.drawCanvas()
 
