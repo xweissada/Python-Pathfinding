@@ -7,6 +7,7 @@ class Node:
         self . state = 0
         self . wall = False
         self . depth = 0
+        self . parent = None
         self . neighbors = []
 
     # Return the Node as its coordinates

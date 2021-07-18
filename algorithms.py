@@ -14,6 +14,7 @@ def BFS(graph, start, end, canvas, window):
         for neighbor in vertice.neighbors:
             if neighbor.state == 0 and not neighbor.wall:
                 if neighbor == end:
+                    end.parent = vertice
                     break
                 neighbor.ChangeState(1)
                 canvas.create_rectangle(neighbor.x * 20, neighbor.y * 20, (neighbor.x + 1) * 20, (neighbor.y + 1) * 20,
@@ -21,6 +22,7 @@ def BFS(graph, start, end, canvas, window):
                 window.update()
                 time.sleep(0.1)
                 neighbor.depth = vertice.depth + 1
+                neighbor.parent = vertice
                 queue.append(neighbor)
         vertice.ChangeState(2)
         if vertice != graph.start:
@@ -28,6 +30,12 @@ def BFS(graph, start, end, canvas, window):
                                     fill="blue", width=1)
         window.update()
         time.sleep(0.1)
+    path = end.parent
+    while path.parent != None:
+        canvas.create_rectangle(path.x * 20, path.y * 20, (path.x + 1) * 20, (path.y + 1) * 20,
+                                    fill="purple", width=1)
+        path = path.parent
+        
 
 
 def DFSRec(node, start, end, canvas, window):
@@ -40,8 +48,6 @@ def DFSRec(node, start, end, canvas, window):
     window.update()
     time.sleep(0.1)
     for neighbor in node.neighbors:
-        if neighbor == end:
-            return
         DFSRec(neighbor, start, end, canvas, window)
     node.state = 2
     if node != start:
