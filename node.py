@@ -11,7 +11,7 @@ class Node:
     def __repr__ ( self ):
         return "[" + str ( self . x ) + ":" + str ( self . y ) + "]"
 
-    # Change the state of the Node to newState
+    # Change the state of the Node to newState ( 0 .. unknown, 1 .. opened, 2 .. closed )
     def ChangeState ( self, newState ):
         self . state = newState
 
