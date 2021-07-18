@@ -5,6 +5,7 @@ def BFS(graph, start, end, canvas, window):
     for node in graph.nodes:
         node.ChangeState(0)
         node.depth = 0
+        node.parent = None
     queue = []
     queue.append(start)
     start.ChangeState(1)
@@ -15,6 +16,7 @@ def BFS(graph, start, end, canvas, window):
             if neighbor.state == 0 and not neighbor.wall:
                 if neighbor == end:
                     end.parent = vertice
+                    queue.clear()
                     break
                 neighbor.ChangeState(1)
                 canvas.create_rectangle(neighbor.x * 20, neighbor.y * 20, (neighbor.x + 1) * 20, (neighbor.y + 1) * 20,

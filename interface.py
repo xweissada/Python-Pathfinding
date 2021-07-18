@@ -8,10 +8,11 @@ class Interface:
     def __init__(self, x=10, y=10):
         self.graph = Graph(x, y)
         self.graph.AddStart(45)
-        self.algorithm = 0
         self.window = Tk()
         self.window.title("Python Pathfinding")
         self.window.geometry("650x650")
+        self.algorithm = StringVar(self.window)
+        self.algorithm.set("BFS")
 
         self.canvas = Canvas(self.window)
 
@@ -23,8 +24,8 @@ class Interface:
         self.btn1.pack()
         self.btn2 = Button(self.window, text="Reset", command=self.drawCanvas)
         self.btn2.pack()
-        self.btn3 = Button(self.window, text="Change algorithm", command=self.changeAlgorithm)
-        self.btn3.pack()
+        self.drop = OptionMenu(self.window, self.algorithm, "BFS", "DFS")
+        self.drop.pack()
 
     def drawCanvas(self):
         for node in self.graph.nodes:
@@ -45,9 +46,9 @@ class Interface:
         self.drawCanvas()
 
     def buttonClick(self):
-        if self.algorithm == 0:
+        if self.algorithm.get() == "BFS":
                 BFS(self.graph, self.graph.start, self.graph.end, self.canvas, self.window)
-        if self.algorithm == 1:
+        if self.algorithm.get() == "DFS":
                 DFS(self.graph, self.graph.start, self.graph.end, self.canvas, self.window)
 
     def changeAlgorithm(self):
