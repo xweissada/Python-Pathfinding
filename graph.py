@@ -8,8 +8,7 @@ class Graph:
         for i in range ( y ):
             for j in range ( x ):
                 self . nodes . append ( Node ( j, i ) )
-                print ( self . nodes[-1], end = " " )
-            print ()
+    
         self . start = self . nodes[0]
         a = 0
         for node in self . nodes:
@@ -24,5 +23,5 @@ class Graph:
             a += 1
 
     # Changes the starting point of the graph
-    def AddStart ( self, start ):
-        self . start = self . nodes[start]
+    def AddStart ( self, node ):
+        self . start = self . nodes[node]
