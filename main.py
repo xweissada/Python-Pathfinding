@@ -2,55 +2,20 @@ from node import Node
 from graph import Graph
 from algorithms import *
 
-n00 = Node ( 0, 0 )
-n01 = Node ( 0, 1 )
-n02 = Node ( 0, 2 )
-n10 = Node ( 1, 0 )
-n11 = Node ( 1, 1 )
-n12 = Node ( 1, 2 )
-n20 = Node ( 2, 0 )
-n21 = Node ( 2, 1 )
-n22 = Node ( 2, 2 )
+x = int ( input ( "Enter number of columns: " ) )
+y = int ( input ( "Enter number of rows: " ) )
 
-
-n00 . AddNeighbor ( n10 )
-n00 . AddNeighbor ( n01 )
-n01 . AddNeighbor ( n00 )
-n01 . AddNeighbor ( n11 )
-n01 . AddNeighbor ( n02 )
-n02 . AddNeighbor ( n01 )
-n02 . AddNeighbor ( n12 )
-n10 . AddNeighbor ( n00 )
-n10 . AddNeighbor ( n11 )
-n10 . AddNeighbor ( n20 )
-n11 . AddNeighbor ( n01 )
-n11 . AddNeighbor ( n10 )
-n11 . AddNeighbor ( n12 )
-n11 . AddNeighbor ( n21 )
-n12 . AddNeighbor ( n02 )
-n12 . AddNeighbor ( n11 )
-n12 . AddNeighbor ( n22 )
-n20 . AddNeighbor ( n10 )
-n20 . AddNeighbor ( n21 )
-n21 . AddNeighbor ( n20 )
-n21 . AddNeighbor ( n11 )
-n21 . AddNeighbor ( n22 )
-n22 . AddNeighbor ( n21 )
-n22 . AddNeighbor ( n12 )
-
-graph = Graph()
-graph . AddStart ( n11 )
-graph . AddNode ( n00 )
-graph . AddNode ( n01 )
-graph . AddNode ( n02 )
-graph . AddNode ( n10 )
-#graph . AddNode ( n11 )
-graph . AddNode ( n12 )
-graph . AddNode ( n20 )
-graph . AddNode ( n21 )
-graph . AddNode ( n22 )
-BFS ( graph, graph . start )
-
+graph = Graph ( x, y )
 print()
 
-DFS ( graph, graph . start )
+while ( True ):
+    answ = int ( input ( "Enter 1 for BFS or 2 for DFS: " ) )
+    if answ == 1:
+        print( "BFS:" )
+        BFS ( graph, graph . start )
+    elif answ == 2:
+        print( "DFS:" )
+        DFS ( graph, graph . start )
+    else:
+        break
+    print()
