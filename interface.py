@@ -9,7 +9,7 @@ class Interface:
         self.graph = Graph(x, y)
         self.window = Tk()
         self.window.title("Python Pathfinding")
-        self.window.geometry("650x650")
+        self.window.geometry("350x350")
         self.algorithm = StringVar(self.window)
         self.algorithm.set("BFS")
 
@@ -17,14 +17,14 @@ class Interface:
 
         self.drawCanvas()
         self.canvas.tag_bind("recClick", "<Button-1>", self.onClick)
-        self.canvas.pack()
+        self.canvas.pack(fill=BOTH, expand=True)
 
         self.btn1 = Button(self.window, text="GO", command=self.buttonClick)
-        self.btn1.pack()
+        self.btn1.pack(side=RIGHT, pady=5, padx=5)
         self.btn2 = Button(self.window, text="Reset", command=self.drawCanvas)
-        self.btn2.pack()
+        self.btn2.pack(side=RIGHT, pady=10, padx=5)
         self.drop = OptionMenu(self.window, self.algorithm, "BFS", "DFS")
-        self.drop.pack()
+        self.drop.pack(side=RIGHT, pady=15, padx=5)
 
     def drawCanvas(self):
         for arr in self.graph.nodes:
