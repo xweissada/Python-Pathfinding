@@ -4,9 +4,14 @@
 
 This is a python program showing off some pathfinding algorithms using a GUI made with tkinter.
 
+## Algorithms
+
+- Breadth first search
+- A*
+
 ## How to use
 
-Click on any square to add or remove a wall. In the dropdown menu, chose the algorithm you want to use. Click 'GO' to run the algorithm nad 'reset' to reset the grid.
+Click on any square to add or remove a wall. In the dropdown menu, chose the algorithm you want to use. Click 'GO' to run the algorithm and 'reset' to reset the grid.
 
 ## Example
 

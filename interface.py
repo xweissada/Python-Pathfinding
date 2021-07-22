@@ -5,6 +5,7 @@ from tkinter import *
 
 class Interface:
 
+    # Constructs the GUI, creates the base graph
     def __init__(self, x=15, y=15):
         self.graph = Graph(x, y)
         self.window = Tk()
@@ -26,6 +27,7 @@ class Interface:
         self.drop = OptionMenu(self.window, self.algorithm, "BFS", "A*")
         self.drop.pack(side=RIGHT, pady=15, padx=5)
 
+    # Draws the grid, white for open node, black for wall, green for start and red for end
     def drawCanvas(self):
         for arr in self.graph.nodes:
             for node in arr:
@@ -39,11 +41,13 @@ class Interface:
                     self.canvas.create_rectangle(node.x * 20, node.y * 20, (node.x + 1) * 20, (node.y + 1) * 20,
                                                 fill=node.Color(), width=1, tags="recClick")
 
+    # Changes the wall boolean for the clicked on node
     def onClick(self, pos):
         self.graph.nodes[int(pos.y / 20)][int(pos.x / 20)].ChangeWall()
         self.canvas.delete(ALL)
         self.drawCanvas()
 
+    # Runs the algorithm depending on which option is selected in dropdown menu
     def buttonClick(self):
         if self.algorithm.get() == "BFS":
             BFS(self.graph, self.graph.start, self.graph.end, self.canvas, self.window)
@@ -52,9 +56,6 @@ class Interface:
         if self.algorithm.get() == "A*":
             AStar(self.graph, self.graph.start, self.graph.end, self.canvas, self.window)
 
-    def changeAlgorithm(self):
-        self.algorithm += 1
-        self.algorithm = self.algorithm % 2
-
+    # Starts the tkinter main loop
     def Run(self):
         self.window.mainloop()
