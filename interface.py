@@ -23,7 +23,7 @@ class Interface:
         self.btn1.pack(side=RIGHT, pady=5, padx=5)
         self.btn2 = Button(self.window, text="Reset", command=self.drawCanvas)
         self.btn2.pack(side=RIGHT, pady=10, padx=5)
-        self.drop = OptionMenu(self.window, self.algorithm, "BFS", "DFS")
+        self.drop = OptionMenu(self.window, self.algorithm, "BFS", "DFS", "A*")
         self.drop.pack(side=RIGHT, pady=15, padx=5)
 
     def drawCanvas(self):
@@ -46,9 +46,11 @@ class Interface:
 
     def buttonClick(self):
         if self.algorithm.get() == "BFS":
-                BFS(self.graph, self.graph.start, self.graph.end, self.canvas, self.window)
+            BFS(self.graph, self.graph.start, self.graph.end, self.canvas, self.window)
         if self.algorithm.get() == "DFS":
-                DFS(self.graph, self.graph.start, self.graph.end, self.canvas, self.window)
+            DFS(self.graph, self.graph.start, self.graph.end, self.canvas, self.window)
+        if self.algorithm.get() == "A*":
+            AStar(self.graph, self.graph.start, self.graph.end, self.canvas, self.window)
 
     def changeAlgorithm(self):
         self.algorithm += 1

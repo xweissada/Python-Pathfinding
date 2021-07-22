@@ -4,6 +4,9 @@ class Node:
     def __init__ ( self, x=0, y=0 ):
         self . x = x
         self . y = y
+        self . f = 0
+        self . h = 0
+        self . g = 0
         self . state = 0
         self . wall = False
         self . depth = 0
@@ -13,6 +16,9 @@ class Node:
     # Return the Node as its coordinates
     def __repr__ ( self ):
         return "[" + str ( self . x ) + ":" + str ( self . y ) + "]"
+    
+    def __lt__ ( self, other ):
+        return self.f < other.f
 
     # Change the state of the Node to newState ( 0 .. unknown, 1 .. opened, 2 .. closed )
     def ChangeState ( self, newState ):
