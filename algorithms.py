@@ -69,7 +69,7 @@ def DFS(graph, start, end, canvas, window):
 
 
 def GetHeuristic (node, end):
-    return abs(node.x - end.x) + abs(node.y - end.y)
+    return (abs(node.x - end.x) + abs(node.y - end.y))
 
 def AStar(graph, start, end, canvas, window):
     for arr in graph.nodes:
@@ -80,31 +80,33 @@ def AStar(graph, start, end, canvas, window):
             node.h=0
             node.parent=None
     openNodes = []
-    closedNodes = []
     openNodes.append(start)
     while openNodes:
         currentNode = openNodes.pop(0)
-        closedNodes.append(currentNode)
+        currentNode.state = 2
         if currentNode != start:
             canvas.create_rectangle(currentNode.x * 20, currentNode.y * 20, (currentNode.x + 1) * 20, (currentNode.y + 1) * 20, fill="blue", width=1)
+            window.update()
+            time.sleep(0.1)
         for node in currentNode.neighbors:
             print(node)
             if node == end:
                 end.parent = currentNode
                 openNodes.clear()
                 break
-            if node not in closedNodes and not node.wall:
-                gValue = currentNode.g + 10
+            if node.state != 2 and not node.wall:
+                gValue = currentNode.g + 1
                 hValue = GetHeuristic(node, end)
-                fValue = node.g + node.h
-                if node in openNodes and node.f < fValue:
+                fValue = gValue + hValue
+                if node.state == 1 and node.f > fValue:
                     openNodes.remove(node)
                     node.parent = currentNode
                     node.g = gValue
                     node.h = hValue
                     node.f = fValue
                     bisect.insort(openNodes, node)
-                else:
+                elif node.state == 0:
+                    node.state = 1
                     node.parent = currentNode
                     node.g = gValue
                     node.h = hValue

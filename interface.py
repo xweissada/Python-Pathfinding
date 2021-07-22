@@ -5,11 +5,11 @@ from tkinter import *
 
 class Interface:
 
-    def __init__(self, x=10, y=10):
+    def __init__(self, x=15, y=15):
         self.graph = Graph(x, y)
         self.window = Tk()
         self.window.title("Python Pathfinding")
-        self.window.geometry("350x350")
+        self.window.geometry("350x400")
         self.algorithm = StringVar(self.window)
         self.algorithm.set("BFS")
 
@@ -23,7 +23,7 @@ class Interface:
         self.btn1.pack(side=RIGHT, pady=5, padx=5)
         self.btn2 = Button(self.window, text="Reset", command=self.drawCanvas)
         self.btn2.pack(side=RIGHT, pady=10, padx=5)
-        self.drop = OptionMenu(self.window, self.algorithm, "BFS", "DFS", "A*")
+        self.drop = OptionMenu(self.window, self.algorithm, "BFS", "A*")
         self.drop.pack(side=RIGHT, pady=15, padx=5)
 
     def drawCanvas(self):
